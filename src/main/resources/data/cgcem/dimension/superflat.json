@@ -1,0 +1,31 @@
+{
+  "type": "cgcem:superflat",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:plains",
+      "lakes": false,
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 1
+        },
+        {
+          "block": "minecraft:stone",
+          "height": 47
+        },
+        {
+          "block": "minecraft:dirt",
+          "height": 15
+        },
+        {
+          "block": "minecraft:grass_block",
+          "height": 1
+        }
+      ],
+      "structure_overrides": [
+        "minecraft:villages"
+      ]
+    }
+  }
+}

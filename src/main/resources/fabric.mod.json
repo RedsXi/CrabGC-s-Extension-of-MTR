@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "cgcem",
+  "version": "${version}",
+  "name": "CrabGC's Extension of MTR",
+  "description": "",
+  "authors": ["RedsXi"],
+  "contact": {"QQ": "334939272"},
+  "license": "GPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.redsxi.mc.cgcem.CrabGcsExtensionOfMc"
+    ],
+    "main": [
+      "org.redsxi.mc.cgcem.CrabGcsExtensionOfMc"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "mixins": [
+    "cgcem.mixin.json"
+  ],
+  "accessWidener": "cgcem.accesswidener"
+}
