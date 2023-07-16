@@ -1,13 +1,13 @@
 package org.redsxi.mc.cgcem;
 
 import mtr.CreativeModeTabs;
-import mtr.Items;
-import mtr.RegistryClient;
 import mtr.mappings.FabricRegistryUtilities;
 import mtr.mappings.RegistryUtilities;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Block;
@@ -15,18 +15,17 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.dimension.DimensionType;
 import org.redsxi.mc.cgcem.command.ICommand;
+import org.redsxi.mc.cgcem.command.KillClient;
 import org.redsxi.mc.cgcem.command.SetPassCost;
+import org.redsxi.mc.cgcem.network.client.KillClientHandler;
 
-import java.awt.*;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 
-public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitializer {
+public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer {
 
     public static final String MOD_ID = "cgcem";
 
@@ -36,19 +35,25 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         registerBlock("ticket_barrier_exit_redstone", Blocks.TICKET_BARRIER_EXIT_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerBlock("ticket_barrier_pay_direct", Blocks.TICKET_BARRIER_PAY_DIRECT, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerCommand(SetPassCost.class);
+        registerCommand(KillClient.class);
         CustomPortalBuilder.beginPortal()
                 .frameBlock(net.minecraft.block.Blocks.IRON_BLOCK)
                 .lightWithFluid(Fluids.WATER)
                 .destDimID(idOf("superflat"))
                 .tintColor(24,196,0)
                 .registerPortal();
-        ThreadedAnvilChunkStorage a;
     }
 
     public void onInitializeClient() {
+        Environment.setEnvironment(Environment.CLIENT);
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_ENTRANCE_REDSTONE);
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_EXIT_REDSTONE);
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_PAY_DIRECT);
+        clientRegisterNetworkReceiver(NetworkIds.KILL_CLIENT, KillClientHandler.class);
+    }
+
+    public void onInitializeServer() {
+        Environment.setEnvironment(Environment.SERVER);
     }
 
     private static void registerCutOutBlockRender(Block b) {
@@ -83,6 +88,12 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         }
     }
 
-    private void registerDimensionType(String name, DimensionType dt) {
+    private static
+    <T extends ClientPlayNetworking.PlayChannelHandler>
+    void clientRegisterNetworkReceiver(Identifier id, Class<T> classOfReceiver) {
+        try {
+            Constructor<T> constructor = classOfReceiver.getConstructor();
+            ClientPlayNetworking.registerGlobalReceiver(id, constructor.newInstance());
+        } catch (Exception ignored) {}
     }
 }
