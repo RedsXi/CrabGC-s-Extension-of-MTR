@@ -5,7 +5,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.main.Main;
 import net.minecraft.command.argument.BlockPosArgumentType;
-import net.minecraft.server.command.ScoreboardCommand;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
