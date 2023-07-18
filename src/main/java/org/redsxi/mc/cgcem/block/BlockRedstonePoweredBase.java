@@ -2,6 +2,7 @@ package org.redsxi.mc.cgcem.block;
 
 import mtr.block.IBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -89,5 +90,4 @@ public class BlockRedstonePoweredBase extends Block {
             return getDefaultState().with(ENABLED, false);
         } else return getDefaultState();
     }
-
 }

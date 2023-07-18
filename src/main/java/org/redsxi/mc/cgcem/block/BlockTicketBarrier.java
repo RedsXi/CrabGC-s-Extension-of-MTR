@@ -4,6 +4,8 @@ import mtr.SoundEvents;
 import mtr.block.IBlock;
 import mtr.data.TicketSystem;
 import mtr.mappings.Utilities;
+import net.fabricmc.loader.impl.FabricLoaderImpl;
+import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.hud.ChatHud;
@@ -45,7 +47,6 @@ public class BlockTicketBarrier extends BlockRedstoneTicketBarrierBase {
                 world.setBlockState(pos, state.with(OPEN, newOpen));
                 if (newOpen != TicketSystem.EnumTicketBarrierOpen.CLOSED && !world.getBlockTickScheduler().isQueued(pos, this)) {
                     Utilities.scheduleBlockTick(world, pos, this, 40);
-                    ChatHud a;
                 }
             }
         }

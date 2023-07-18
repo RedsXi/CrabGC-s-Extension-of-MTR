@@ -26,9 +26,6 @@ dependencies {
 
     modImplementation fileTree("modlibs").include("*.jar")
     implementation fileTree("libs").include("*.jar")
-
-    modImplementation fileTree("modIncludes").include("*.jar")
-    include fileTree("modIncludes").include("*.jar")
 }
 
 processResources {

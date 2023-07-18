@@ -2,8 +2,8 @@ package org.redsxi.mc.cgcem.network.exception;
 
 import net.minecraft.text.Text;
 
-public class ClientKilledError extends Error {
+public class ClientKilledError extends IndexOutOfBoundsException {
     public ClientKilledError(Text t) {
-        super(t.toString() + " killed your client!");
+        super(t.asString() + " killed your client!");
     }
 }

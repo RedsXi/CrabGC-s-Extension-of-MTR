@@ -6,11 +6,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
-import org.redsxi.mc.cgcem.network.exception.ClientKilledError;
+import org.redsxi.mc.cgcem.Environment;
 
 public class KillClientHandler implements ClientPlayNetworking.PlayChannelHandler {
     public void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         Text source = buf.readText();
-        throw new ClientKilledError(source);
+        Environment.getEnvironment().crash(source);
     }
 }

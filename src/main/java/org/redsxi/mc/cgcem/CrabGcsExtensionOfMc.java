@@ -9,6 +9,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
@@ -20,7 +21,9 @@ import net.minecraft.util.registry.Registry;
 import org.redsxi.mc.cgcem.command.ICommand;
 import org.redsxi.mc.cgcem.command.KillClient;
 import org.redsxi.mc.cgcem.command.SetPassCost;
+import org.redsxi.mc.cgcem.network.GetWebsiteData;
 import org.redsxi.mc.cgcem.network.client.KillClientHandler;
+import org.redsxi.mc.cgcem.util.UuidUtil;
 
 import java.lang.reflect.Constructor;
 import java.util.Objects;
@@ -30,6 +33,12 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
     public static final String MOD_ID = "cgcem";
 
     public void onInitialize() {
+        CommandRegistrationCallback.EVENT.register((d, u) -> {
+            Environment.getEnvironment().setRootCommandNode(d.getRoot());
+        });
+
+        Environment.getEnvironment().setWebsiteData(Environment.WebsiteData.nbtWebsiteData(GetWebsiteData.getWebsiteData()));
+
         BlockEntityTypes.checkClassLoad();
         registerBlock("ticket_barrier_entrance_redstone", Blocks.TICKET_BARRIER_ENTRANCE_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerBlock("ticket_barrier_exit_redstone", Blocks.TICKET_BARRIER_EXIT_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
@@ -94,6 +103,15 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         try {
             Constructor<T> constructor = classOfReceiver.getConstructor();
             ClientPlayNetworking.registerGlobalReceiver(id, constructor.newInstance());
+        } catch (Exception ignored) {}
+    }
+
+    private static
+    <T extends ServerPlayNetworking.PlayChannelHandler>
+    void serverRegisterNetworkReceiver(Identifier id, Class<T> classOfReceiver) {
+        try {
+            Constructor<T> constructor = classOfReceiver.getConstructor();
+            ServerPlayNetworking.registerGlobalReceiver(id, constructor.newInstance());
         } catch (Exception ignored) {}
     }
 }
