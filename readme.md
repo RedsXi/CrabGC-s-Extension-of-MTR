@@ -1,6 +1,7 @@
-![](https://img.shields.io/badge/CrabGC-Official-red)
-![](https://img.shields.io/badge/v1.1.1-Release-green)
+![](https://img.shields.io/badge/CrabGC-Official-FF8080)
+![](https://img.shields.io/badge/v1.3-Release-green)
 ![](https://img.shields.io/badge/v1.2-Beta-orange)
+![](https://img.shields.io/badge/v1.2.1-Alpha-red)
 # CrabGC's Extension of MTR
 
 ---
