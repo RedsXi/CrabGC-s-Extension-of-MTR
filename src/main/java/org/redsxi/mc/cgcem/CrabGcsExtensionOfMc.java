@@ -37,8 +37,6 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
             Environment.getEnvironment().setRootCommandNode(d.getRoot());
         });
 
-        Environment.getEnvironment().setWebsiteData(Environment.WebsiteData.nbtWebsiteData(GetWebsiteData.getWebsiteData()));
-
         BlockEntityTypes.checkClassLoad();
         registerBlock("ticket_barrier_entrance_redstone", Blocks.TICKET_BARRIER_ENTRANCE_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerBlock("ticket_barrier_exit_redstone", Blocks.TICKET_BARRIER_EXIT_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
@@ -59,10 +57,14 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_EXIT_REDSTONE);
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_PAY_DIRECT);
         clientRegisterNetworkReceiver(NetworkIds.KILL_CLIENT, KillClientHandler.class);
+
+        afterSideLoaded();
     }
 
     public void onInitializeServer() {
         Environment.setEnvironment(Environment.SERVER);
+
+        afterSideLoaded();
     }
 
     private static void registerCutOutBlockRender(Block b) {
@@ -113,5 +115,9 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
             Constructor<T> constructor = classOfReceiver.getConstructor();
             ServerPlayNetworking.registerGlobalReceiver(id, constructor.newInstance());
         } catch (Exception ignored) {}
+    }
+
+    private void afterSideLoaded() {
+        Environment.getEnvironment().setWebsiteData(Environment.WebsiteData.nbtWebsiteData(GetWebsiteData.getWebsiteData()));
     }
 }
