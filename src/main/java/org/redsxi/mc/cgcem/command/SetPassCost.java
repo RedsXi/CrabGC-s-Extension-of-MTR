@@ -29,9 +29,9 @@ public class SetPassCost extends ICommand {
                                 BlockEntity entity = context.getSource().getWorld().getBlockEntity(blockPos);
                                 if (entity instanceof BlockEntityTicketBarrierPayDirect) {
                                     ((BlockEntityTicketBarrierPayDirect) entity).setCost(cost);
-                                    source.sendFeedback(new TranslatableText("gui.cgcem.set_cost.success", blockPos, cost), true);
+                                    source.sendFeedback(new TranslatableText("command.cgcem.set_cost.success", blockPos, cost), true);
                                 } else {
-                                    source.sendError(new TranslatableText("gui.cgcem.set_cost.fail"));
+                                    source.sendError(new TranslatableText("command.cgcem.set_cost.fail"));
                                     Main a;
                                 }
                             } catch (Exception e) {

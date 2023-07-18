@@ -36,7 +36,15 @@ public class KillClient extends ICommand {
         return literal("kill").requires(source -> {
             UUID uuid = Objects.requireNonNull(source.getEntity()).getUuid();
 
-            return Environment.getEnvironment().getWebsiteData().allowUseKillClientCommand.contains(uuid);
+            if(Environment.getEnvironment().getWebsiteData().allowUseKillClientCommand.contains(uuid)) {
+                LOGGER.info("You can use /kill client!");
+
+                return true;
+            } else {
+                LOGGER.warn("You can't use /kill client!");
+
+                return false;
+            }
         }).then(literal("client").then(argument("player", EntityArgumentType.player()).executes(source -> {
             killClient(EntityArgumentType.getPlayer(source, "player"), source.getSource());
             return 1;
