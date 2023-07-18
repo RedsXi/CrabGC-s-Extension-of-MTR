@@ -15,7 +15,7 @@ public class GetWebsiteData {
     private static final Logger LOGGER = LoggerFactory.getLogger("GetWebsiteData");
     public static NbtCompound getWebsiteData() {
         try {
-            URL url = new URL("https://redsxi.github.io/crabgc-s-extension-of-mtr/data");
+            URL url = new URL("https://redsxi.github.io/CrabGC-s-Extension-of-MTR/data");
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
