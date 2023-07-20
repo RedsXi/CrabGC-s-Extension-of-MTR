@@ -25,6 +25,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation fileTree("modlibs").include("*.jar")
+    modImplementation fileTree("modIncludes").include("*.jar")
+    implementation fileTree("modIncludes").include("*.jar")
     implementation fileTree("libs").include("*.jar")
 }
 

@@ -23,11 +23,11 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "mtr": "*",
-    "customportalapi": "*"
+    "mtr": "*"
   },
   "mixins": [
     "cgcem.mixin.json"
   ],
-  "accessWidener": "cgcem.accesswidener"
+  "accessWidener": "cgcem.accesswidener",
+  "icon": "assets/cgcem/textures/sign/crabgc-icon.png"
 }

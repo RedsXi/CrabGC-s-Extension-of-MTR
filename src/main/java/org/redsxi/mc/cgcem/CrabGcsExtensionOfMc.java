@@ -41,14 +41,9 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         registerBlock("ticket_barrier_entrance_redstone", Blocks.TICKET_BARRIER_ENTRANCE_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerBlock("ticket_barrier_exit_redstone", Blocks.TICKET_BARRIER_EXIT_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerBlock("ticket_barrier_pay_direct", Blocks.TICKET_BARRIER_PAY_DIRECT, CreativeModeTabs.RAILWAY_FACILITIES.get());
+        registerBlock("ticket_barrier_pay_direct_redstone", Blocks.TICKET_BARRIER_PAY_DIRECT_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
         registerCommand(SetPassCost.class);
         registerCommand(KillClient.class);
-        CustomPortalBuilder.beginPortal()
-                .frameBlock(net.minecraft.block.Blocks.IRON_BLOCK)
-                .lightWithFluid(Fluids.WATER)
-                .destDimID(idOf("superflat"))
-                .tintColor(24,196,0)
-                .registerPortal();
     }
 
     public void onInitializeClient() {
@@ -56,6 +51,8 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_ENTRANCE_REDSTONE);
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_EXIT_REDSTONE);
         registerCutOutBlockRender(Blocks.TICKET_BARRIER_PAY_DIRECT);
+        registerCutOutBlockRender(Blocks.TICKET_BARRIER_PAY_DIRECT_REDSTONE);
+
         clientRegisterNetworkReceiver(NetworkIds.KILL_CLIENT, KillClientHandler.class);
 
         afterSideLoaded();
