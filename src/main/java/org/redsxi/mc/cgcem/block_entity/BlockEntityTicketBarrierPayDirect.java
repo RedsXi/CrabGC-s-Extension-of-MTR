@@ -14,9 +14,8 @@ public class BlockEntityTicketBarrierPayDirect extends BlockEntity {
 
     int cost = 10;
 
-    public BlockEntityTicketBarrierPayDirect(BlockPos blockPos, BlockState blockState) {
-        super(BlockEntityTypes.TICKET_BARRIER_PAY_DIRECT, blockPos, blockState);
-
+    public BlockEntityTicketBarrierPayDirect(BlockPos blockPos, BlockState blockState, boolean needRs) {
+        super(needRs ? BlockEntityTypes.TICKET_BARRIER_PAY_DIRECT_REDSTONE : BlockEntityTypes.TICKET_BARRIER_PAY_DIRECT, blockPos, blockState);
     }
 
     public void setCost(int cost) {

@@ -10,10 +10,8 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
@@ -23,7 +21,6 @@ import org.redsxi.mc.cgcem.command.KillClient;
 import org.redsxi.mc.cgcem.command.SetPassCost;
 import org.redsxi.mc.cgcem.network.GetWebsiteData;
 import org.redsxi.mc.cgcem.network.client.KillClientHandler;
-import org.redsxi.mc.cgcem.util.UuidUtil;
 
 import java.lang.reflect.Constructor;
 import java.util.Objects;

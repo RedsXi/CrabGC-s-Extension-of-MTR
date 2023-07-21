@@ -65,6 +65,6 @@ public class BlockTicketBarrierPayDirect extends BlockRedstoneTicketBarrierBase 
     }
 
     public BlockEntity createBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new BlockEntityTicketBarrierPayDirect(blockPos, blockState);
+        return new BlockEntityTicketBarrierPayDirect(blockPos, blockState, needRs);
     }
 }

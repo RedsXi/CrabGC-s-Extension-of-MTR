@@ -58,6 +58,10 @@ abstract class BlockRedstoneTicketBarrierBase extends BlockRedstonePoweredBase {
     public abstract void onEntityPass(BlockState state, World world, BlockPos pos, Entity entity);
 
     public final void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if(!needRs) {
+            onEntityPass(state, world, pos, entity);
+            return;
+        }
         if(!isEnabledByRedstone(state)) {
             onEntityPassWhenNotEnabledByRedstone(state, world, pos, entity);
             return;

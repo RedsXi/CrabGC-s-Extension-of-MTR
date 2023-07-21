@@ -45,6 +45,7 @@ public class BlockRedstonePoweredBase extends Block {
             BlockPos fromPos,
             boolean notify
     ) {
+        if(!needRs) return;
         if (!world.isClient) {
             boolean bl = state.get(ENABLED);
             if (bl != world.isReceivingRedstonePower(pos)) {
