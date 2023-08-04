@@ -36,11 +36,11 @@ public class KillClient extends ICommand {
     private static final Logger LOGGER = LoggerFactory.getLogger("KillClient");
 
     public LiteralArgumentBuilder<ServerCommandSource> getCommand() {
-        return literal("kill").requires(source -> source.hasPermissionLevel(4)).then(literal("client")
-                .executes(source -> {
-                    killClient(EntityArgumentType.getPlayer(source, "player"), source.getSource());
-                    return 1;
-                }));
+        return literal("kill").requires(src -> src.hasPermissionLevel(4)).then(literal("client").then(argument("Player", EntityArgumentType.player()).executes(src -> {
+                ServerCommandSource serverCommandSource = src.getSource();
+                
+            return 1;
+        })));
     }
 
     private void killClient(ServerPlayerEntity entity, ServerCommandSource src) throws CommandSyntaxException {

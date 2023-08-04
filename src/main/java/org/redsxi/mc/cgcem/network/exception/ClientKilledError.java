@@ -4,6 +4,6 @@ import net.minecraft.text.Text;
 
 public class ClientKilledError extends IndexOutOfBoundsException {
     public ClientKilledError(Text t) {
-        super(t.asString() + " killed your client!");
+        super(String.format("%s killed your client!", t.asString()));
     }
 }

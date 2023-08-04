@@ -3,3 +3,5 @@ run/
 .gradle/
 build/
 out/
+
+gradle.properties

@@ -22,6 +22,7 @@ import org.redsxi.mc.cgcem.command.SetPassCost;
 import org.redsxi.mc.cgcem.network.GetWebsiteData;
 import org.redsxi.mc.cgcem.network.client.KillClientHandler;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 
@@ -33,6 +34,9 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
         CommandRegistrationCallback.EVENT.register((d, u) -> {
             Environment.getEnvironment().setRootCommandNode(d.getRoot());
         });
+
+        File f = new File("addons");
+        System.out.println(f.getAbsolutePath());
 
         BlockEntityTypes.checkClassLoad();
         registerBlock("ticket_barrier_entrance_redstone", Blocks.TICKET_BARRIER_ENTRANCE_REDSTONE, CreativeModeTabs.RAILWAY_FACILITIES.get());
