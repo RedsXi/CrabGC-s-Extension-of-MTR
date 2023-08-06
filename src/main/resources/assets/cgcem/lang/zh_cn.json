@@ -12,5 +12,8 @@
   "command.cgcem.set_cost.success": "成功将位于 %1$s 的闸机的扣费额设为 %2$s$",
   "command.cgcem.kill.client.forbidden": "你不能使用此命令！",
   "command.cgcem.kill.client.success": "杀死了%s的客户端",
-  "command.cgcem.kill.client.fail": "你不能杀死%s的客户端！"
+  "command.cgcem.kill.client.fail": "你不能杀死%s的客户端！",
+  "command.cgcem.set_cost.area.none": "未更改任何闸机的扣费额",
+  "command.cgcem.set_cost.area.success": "成功把%2$s个闸机的扣费额设为 %1$s$",
+  "command.cgcem.exception": "无法执行此命令"
 }

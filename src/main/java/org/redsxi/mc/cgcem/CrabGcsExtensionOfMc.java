@@ -1,6 +1,7 @@
 package org.redsxi.mc.cgcem;
 
 import mtr.CreativeModeTabs;
+import mtr.MTR;
 import mtr.mappings.FabricRegistryUtilities;
 import mtr.mappings.RegistryUtilities;
 import net.fabricmc.api.ClientModInitializer;
@@ -83,6 +84,9 @@ public class CrabGcsExtensionOfMc implements ModInitializer, ClientModInitialize
 
     public static Identifier idOf(String path) {
         return new Identifier(MOD_ID, path);
+    }
+    public static Identifier mtrIdOf(String path) {
+        return new Identifier(MTR.MOD_ID, path);
     }
 
     private static void registerCommand(ICommand cmd) {

@@ -9,4 +9,9 @@ public interface Blocks {
     Block TICKET_BARRIER_EXIT_REDSTONE = new BlockTicketBarrier(false, true);
     Block TICKET_BARRIER_PAY_DIRECT = new BlockTicketBarrierPayDirect(false);
     Block TICKET_BARRIER_PAY_DIRECT_REDSTONE = new BlockTicketBarrierPayDirect(true);
+
+
+    // MTR
+    Block TICKET_BARRIER_ENTRANCE = new BlockTicketBarrier(true, false);
+    Block TICKET_BARRIER_EXIT = new BlockTicketBarrier(false, false);
 }

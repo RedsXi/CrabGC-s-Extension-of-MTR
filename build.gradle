@@ -1,33 +1,41 @@
+import java.nio.charset.StandardCharsets
+
 plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
     id "com.modrinth.minotaur" version "2.+"
+    id "org.jetbrains.kotlin.jvm" version "1.9.0"
 }
 
 version = project.mod_version
 group = project.maven_group
 
-repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // You should only use this when depending on other mods because
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repositories.
-}
-
 dependencies {
-    // To change the versions see the gradle.properties file
+    //
+    //repositories {
+    //    mavenCentral()
+    //    // Add repositories to retrieve artifacts from in here.
+    //    // You should only use this when depending on other mods because
+    //    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    //    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    //    // for more information about repositories.
+    //}
+    //
+    //dependencies {
+    //    // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
         // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation fileTree("modlibs").include("*.jar")
-    modImplementation fileTree("modIncludes").include("*.jar")
-    implementation fileTree("modIncludes").include("*.jar")
     implementation fileTree("libs").include("*.jar")
+
+    modImplementation "net.fabricmc:fabric-language-kotlin:1.10.8+kotlin.1.9.0"
+
+
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 }
 
 processResources {
@@ -91,7 +99,8 @@ publishing {
 }
 
 modrinth {
-    token = "${project.modrinthToken}"
+    print "Enter your Token: "
+    token = System.in.newReader().readLine()
     projectId = "${project.projectId}"
     versionNumber = "${project.mod_version}"
     versionName = "${project.version_name}"
@@ -102,6 +111,7 @@ modrinth {
     dependencies {
         required.project "fabric-api"
         required.project "minecraft-transit-railway"
+        required.project "fabric-language-kotlin"
     }
 }
 

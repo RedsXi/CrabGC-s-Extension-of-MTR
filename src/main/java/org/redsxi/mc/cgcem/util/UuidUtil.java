@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class UuidUtil {
     public static UUID convertIntArrayToUuid(int[] ints) {
-        assert ints.length == 16 : "data must be 4 ints in length";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        assert ints.length == 16 : "data must be 4 ints in length";
         long msb = ((long)ints[0]) << 32;
         msb += ((long)ints[1]) & 0xffffffffL;
         long lsb = ((long)ints[2]) << 32;

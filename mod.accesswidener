@@ -1,4 +1,4 @@
-accessWidener   v1  named
-mutable field   net/minecraft/block/Block stateManager Lnet/minecraft/state/StateManager;
+accessWidener   v1  intermediary
+mutable field   net/minecraft/class_2248 field_10647 Lnet/minecraft/class_2689;
 accessible field com/mojang/serialization/DataResult$PartialResult message Ljava/lang/String;
 accessible field com/mojang/serialization/DataResult$PartialResult partialResult Ljava/util/Optional;
